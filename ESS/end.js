@@ -150,6 +150,8 @@ function drawPoint(){
                     ctx.fillStyle = '#900C3E';
                     ctx.fill();
                     ctx.stroke();
+                    ctx.font = "20px Arial";
+                    ctx.fillText(i, arraux[i*2] + 10 , arraux[(i*2)+1] + 10);
                     // Pintar o ponto na cor vinho
                 }
             } else {
