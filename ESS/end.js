@@ -3,7 +3,7 @@ canvas.onmousedown = myDown;
 canvas.onmouseup = myUp;
 var ctx = canvas.getContext("2d");
 var rect = canvas.getBoundingClientRect();
-var checkPoint = document.getElementsByName("check1");
+var checkPoint = document.getElementsByName("PoCo");
 var matriz = [];
 var matrizaux = [];
 var comecoBool;
@@ -20,7 +20,7 @@ var mkPonto = false;
 var actualCurve;
 var actualPoint;
 
-function myMove(e) {
+function moverCurva(e) {
     if (dragok) {
         matriz[actualCurve][actualPoint * 2] = e.pageX - canvas.offsetLeft;
         matriz[actualCurve][(actualPoint * 2) + 1] = e.pageY - canvas.offsetTop;
@@ -45,7 +45,7 @@ function myDown(e) {
                 arraux[i * 2] = e.pageX - canvas.offsetLeft;
                 arraux[(i * 2) + 1] = e.pageY - canvas.offsetTop;
                 dragok = true;
-                canvas.onmousemove = myMove;
+                canvas.onmousemove = moverCurva;
             }
         } 
     }
@@ -78,13 +78,14 @@ function criandoReta(){
 }
 
 function comeco(){
-    if(!comecoBool){
+    // Vemos se devemos inserir na curva ou parar a inserção
+    if(!comecoBool){    
         document.getElementById("criar").innerHTML = "Parar Curva";
         comecoBool = true;
     } else {
         document.getElementById("criar").innerHTML = "Nova Curva"; 
         comecoBool = false;
-        if(matrizaux.length>0){
+        if(matrizaux.length > 0){
             matriz.push(matrizaux);
         }
         matrizaux = [];
@@ -93,8 +94,9 @@ function comeco(){
 }
 
 function apagarReta(){
-    matriz.splice(retaSelect,1);
-    if(retaSelect>matriz.length-1){
+    // Apagamos a reta
+    matriz.splice(retaSelect, 1);
+    if(retaSelect > matriz.length-1){
         retaSelect--;
     }
     if(retaSelect < 0){
@@ -104,27 +106,31 @@ function apagarReta(){
 }
 
 function anteriorReta(){
-    if(retaSelect>0){
+    // Função de voltar a reta selecionada
+    if(retaSelect > 0){
         retaSelect--;
         redesenharTudo();
     }
 }
 
 function proximaReta(){
-    if(retaSelect<matriz.length-1){
-            retaSelect++;
-            redesenharTudo();
-        }
+    // Função de avançar a reta selecionada
+    if(retaSelect < matriz.length - 1){
+        retaSelect++;
+        redesenharTudo();
+    }
 }
 
 function drawPointAoVivo(){
-    var checkPoint = document.getElementsByName("check1");
+    // Desenha ponto "ao vivo", ou seja, no momento que você clica
+    var checkPoint = document.getElementsByName("PoCo");
     if(checkPoint[0].checked){
         var arraux = matrizaux;
         for(var i = 0; ((i*2)+1)<arraux.length;i++){
             ctx.beginPath();
             ctx.arc(arraux[i*2],arraux[(i*2)+1],5, 0, 2 * Math.PI);
             ctx.fillStyle = '#000000';
+            // Ponto desenhado na cor preta
             ctx.fill();
             ctx.stroke();
         }
@@ -132,7 +138,7 @@ function drawPointAoVivo(){
 }
 
 function drawPoint(){
-    var checkPoint = document.getElementsByName("check1");
+    var checkPoint = document.getElementsByName("PoCo");
     if(checkPoint[0].checked){
         for(var j = 0; j<matriz.length;j++){
             var arraux = matriz[j];
@@ -144,7 +150,7 @@ function drawPoint(){
                     ctx.fillStyle = '#900C3E';
                     ctx.fill();
                     ctx.stroke();
-                    
+                    // Pintar o ponto na cor vinho
                 }
             } else {
                 for(var i = 0; ((i*2)+1)<arraux.length;i++){
@@ -154,6 +160,7 @@ function drawPoint(){
                     ctx.fillStyle = '#000000';
                     ctx.fill();
                     ctx.stroke();
+                    // Pintar ponto não selecionado na cor preta
                 } 
             }
         }
@@ -161,7 +168,7 @@ function drawPoint(){
 }
 
 function drawLine(){
-    var checkPCtrl = document.getElementsByName("check2"); 
+    var checkPCtrl = document.getElementsByName("PoCu"); 
     if(checkPCtrl[0].checked){
         for(var j = 0; j<matriz.length;j++){
             var arraux = matriz[j];
@@ -169,58 +176,61 @@ function drawLine(){
             if(retaSelect === j){
                 ctx.strokeStyle = '#FFC300';
                 ctx.beginPath();
-                for(var i = 0; ((i*2)+1)<arraux.length;i++){
+                for(var i = 0; ((i*2)+1) < arraux.length;i++){
                     ctx.lineTo(arraux[i*2],arraux[(i*2)+1]);
                     ctx.stroke();
                 }
+                // Reta selecionada na cor amarela
             } else {
                 ctx.strokeStyle = '#000000';
                 ctx.beginPath();
-                for(var i = 0; ((i*2)+1)<arraux.length;i++){
+                for(var i = 0; ((i*2)+1) < arraux.length;i++){
                     ctx.lineTo(arraux[i*2],arraux[(i*2)+1]);
                     ctx.stroke();
-                } 
+                }
+                // Reta não-selecionada na cor preta 
             }
         }
     }
 }
 
 function bezier(t,arr){
-    var n = arr.length/2;
+    var n = arr.length/2;   
+    // Tamanho da reta
     var aupx = [];
-    var retorm = [];
+    var bezierPontos = [];
 
-    for(var k = 0; (k*2)<arr.length;k++){
+    for(var k = 0; (k*2) < arr.length;k++){
         aupx.push(Math.floor(arr[k*2]));
     }
 
     var aupy = [];
-    for(var k = 0; ((k*2)+1)<arr.length;k++){
+    for(var k = 0; ((k*2)+1) < arr.length; k++){
         aupy.push(Math.floor(arr[(k*2)+1]));
     }
 
-    for(var k =1;k<=n;k++){
-        for(var p =0;p<=(n-k)-1;p++){
+    for(var k = 1; k <= n; k++){
+        for(var p = 0; p <= (n-k)-1; p++){
             aupx[p] = (1-t)*aupx[p] + t*aupx[p+1];
             aupy[p] = (1-t)*aupy[p] + t*aupy[p+1];
         }
     }
-    retorm.push(aupx[0]);
-    retorm.push(aupy[0]);
-    return retorm;
+    bezierPontos.push(aupx[0]);
+    bezierPontos.push(aupy[0]);
+    return bezierPontos;
 }
 
 function deCasteljau(){
-    var checkCurve = document.getElementsByName("check3");
+    var checkCurve = document.getElementsByName("Cur");
     var pointes = [];
     if(checkCurve[0].checked){
-        for(var j = 0; j<matriz.length;j++){
+        for(var j = 0; j < matriz.length; j++){
             var c = document.getElementById("meuCanvas");
             var ctx = c.getContext("2d");
             var arraux = matriz[j];
             ctx.beginPath();
             ctx.moveTo(arraux[0],arraux[1]);
-            for(var i = 0; i<=1;i+=(1/avaliat)){
+            for(var i = 0; i <= 1; i+=(1/avaliat)){
                 pointes = bezier(i,arraux);
                 if(retaSelect === j){
                     ctx.strokeStyle = '#FF5733';
@@ -256,6 +266,8 @@ function redesenharTudo(){
         drawPoint();
         deCasteljau();
         ctx.strokeStyle = '#000000';
+        // A cada mexida que dá no código,
+        // temos que refazer todos os elementos
     }
 }
 
@@ -316,12 +328,15 @@ function alteraPonto(){
 }
 
 function inserirPonto(){
-    mkPonto = true;
+    mkPonto = true; 
+    // Altera temporariamente para 
+    // continuar adicionando ponto
 }
 
 function removerPonto(){
     rmPonto = true;
     alteraPonto();
     rmPonto = false;
+    // Altera temporariamente para
+    // remover um ponto selecionado
 }
-
