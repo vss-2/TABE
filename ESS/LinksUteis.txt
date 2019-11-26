@@ -1,0 +1,5 @@
+Elemento a ser selecionado (checkbox com timeout)
+// https://www.protractortest.org/#/api?view=ProtractorExpectedConditions.prototype.elementToBeSelected
+
+Elemento é selecionado? (retorna booleano da checkbox)
+// https://www.protractortest.org/#/api?view=webdriver.WebElement.prototype.isSelected
