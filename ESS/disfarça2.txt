@@ -1,0 +1,17 @@
+function num_triag(n)
+	local contador = 1
+	return function()
+		if (contador > n) then return nil
+		else
+			for i=1,contador do 
+				output = (i * (i+1))/2
+			end	
+			contador = contador + 1
+			return output
+		end
+	end
+end
+
+for x in num_triag(6) do
+	io.write(x," ")
+end
