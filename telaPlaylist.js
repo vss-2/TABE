@@ -17,11 +17,17 @@ criarPlaylist = async (nome) => {
       function(response){ 
       info = response; 
       var idPlaylists = [];
+      response.data.items.forEach(element => {
+          idPlaylists.push(element.id);
+          console.log(idPlaylists[idPlaylists.length-1]);
+      });
+      /*
       for(let i = 0; i < response.data.items.length; i++){
         idPlaylists[i] = response.data.items[i].id;
         // Salva o id de 20 playlists que foram solicitadas
         console.log(idPlaylists[i]);
       }
+      */
     }
     ).catch(function (err){
         console.log(err);
