@@ -1,26 +1,36 @@
-cd ~
+
+############################ Baixa o Spotify mais recente, instala e roda ##########################
+curl -s http://packages.linuxmint.com/pool/import/s/spotify-client/ | grep _amd64.deb > versions.txt
 mkdir Spotify
-cd Spotify
-curl -s http://packages.linuxmint.com/pool/import/s/spotify-client/ | grep _amd64.deb > ok.txt
 python3 Spotify.py
+mv Spotify.deb Spotify
+mv versions.txt Spotify
+cd Spotify
 ar x Spotify.deb
 tar xvzf data.tar.gz
+$localSpotify=$(pwd)
 cd usr
 cd bin
-./spotify
+mv $(pwd)/spotify $(pwd)/Spotify
+./Spotify &
+
+
+################################# Criando Atalho no Desktop ########################################
 
 # Criando atalho
-~/Desktop/Spotify.desktop
+cd ~/Desktop
 
-##!/usr/bin/env xdg-open
+echo '
 [Desktop Entry]
 Version=1.0
 Type=Application
 Terminal=false
-Exec=/snap/bin/skype
-Name=Skype
-Comment=Skype
-Icon=/snap/skype/23/usr/share/icons/hicolor/256x256/apps/skypeforlinux.png
+Exec=${localSpotify}/usr/bin/Spotify
+Name=Spotify
+Comment=Spotify
+Icon=${!localSpotify}/share/spotify/icons/spotify-linux-512.png
+' >> Spotify.desktop
+chmod +x Spotify.desktop
 
 # grep _amd64.deb, pega as linhas que tem _amd64.deb
 # wc -l lê a quantidade de linhas

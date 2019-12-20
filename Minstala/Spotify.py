@@ -3,7 +3,7 @@ from subprocess import call
 
 # Pega o diretório atual e muda o URL do ok.txt
 path = os.getcwd()
-path = path+'/ok.txt'
+path = path+'/versions.txt'
 leitor = open(path, 'r+')
 texto = leitor.readlines()
 for linha in texto:
@@ -18,7 +18,7 @@ leitor.close()
 arquivo = linha[inicio+6:fim+4]
 download = 'http://packages.linuxmint.com/pool/import/s/spotify-client/' + arquivo
 
-call(['wget', download, '-O Spotify.deb'])
+call(['wget',download,'-OSpotify.deb'])
 
 '''
 Input para o python vindo do Spotify.sh:
