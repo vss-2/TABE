@@ -1,39 +1,32 @@
 import os
 from subprocess import call
-print('Digite sua busca e depois -a para abrir (FFox) -p para printar o link -s para pegar o magnet do primeiro (estou com sorte): ')
-busca = input()
-parametro = ''
 
-if(busca.endswith('p')):
-	parametro = 'p'
-elif(busca.endswith('a')):
-	parametro = 'a'
-elif(busca.endswith('s')):
-	parametro = 's'
-else:
-	print('O programa não recebeu parâmetros, encerrando!')
-	exit
+def apenasLink(busca):
+	busca = busca[0:len(busca) - 2]
+	busca = busca.replace(' ', '+')
+	cabeca = 'proxtpb.art/s/?q='
+	cauda = '&page=0&orderby=99'
+	output = cabeca+busca+cauda
+	return output
 
-busca = busca[0:len(busca) - 2]
-busca = busca.replace(' ', '+')
-cabeca = 'proxtpb.art/s/?q='
-cauda = '&page=0&orderby=99'
-output = cabeca+busca+cauda
+def abrirFirefox(busca):
+	link = apenasLink(busca)
+	call(["firefox", link])
+	return 
 
-if(parametro == 'p'):
-	print(output)
-elif(parametro == 'a'):
-	## jeito errado: os.system('firefox output')
-	## jeito certo:
-	call(["firefox", output])
-elif(parametro == 's'):
+def estouComSorte(busca):
 	call(["touch", "pagina.txt"])
+	output = apenasLink(busca)
 	call(["curl", "-o", "pagina.txt", "https://"+output])
 	call(["ls"])
 	path   = os.getcwd() + '/pagina.txt'
 	leitor = open(path, 'r')
 	texto  = leitor.readlines()
 	for linha in texto:
+		if(linha.endswith('search phrase.</h2>')):
+			# Caso não for encontrado nenhum resultado
+			print('Não foram encontrados resultados, tente novamente')
+			break
 		if(linha.startswith('<div class="detName">')):
 			melhorResultado = linha.split("\"")
 			print(melhorResultado[3])
@@ -55,12 +48,32 @@ elif(parametro == 's'):
 					# call[("xdg-mime", "default", "transmission-gtk.desktop", "x-scheme-handler/magnet")]
 					break
 			break
-			# Input:
-			# Knightfall S02E01 1080p -s
-			# Output:
-			# Chamada para o seu aplicativo de torrent com o melhor resultado (se encontrado)
-			# Funcionamento, vai para página do torrent, que nem o -p faz
-			# Vê o primeiro torrent da lista, vê o link dele, abre sua página
-			# Na sua página busca pelo campo "magnet" 
-			# Dá uma systemcall pro xdg-open chamar o programa associado ao torrent passando o magnet
-exit
+		
+	return
+
+if __name__ == "__main__":
+	print('Digite sua busca e depois: \n-a para abrir (FFox) ou \n-p para printar o link ou \n-s para pegar o magnet do primeiro (estou com sorte): ')
+	busca = input()
+	parametro = ''
+
+	if(busca.endswith('p')):
+		apenasLink(busca)
+		exit
+	elif(busca.endswith('a')):
+		abrirFirefox(busca)
+		exit
+	elif(busca.endswith('s')):
+		estouComSorte(busca)
+		exit
+	else:
+		print('O programa não recebeu parâmetros, encerrando!')
+		exit
+
+# Input:
+# Knightfall S02E01 1080p -s
+# Output:
+# Chamada para o seu aplicativo de torrent com o melhor resultado (se encontrado)
+# Funcionamento, vai para página do torrent, que nem o -p faz
+# Vê o primeiro torrent da lista, vê o link dele, abre sua página
+# Na sua página busca pelo campo "magnet" 
+# Dá uma systemcall pro xdg-open chamar o programa associado ao torrent passando o magnet
