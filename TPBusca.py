@@ -67,6 +67,11 @@ if __name__ == "__main__":
 		exit
 	else:
 		print('O programa não recebeu parâmetros, encerrando!')
+		trackerList = input('Espera, gostaria de pegar a trackerlist mais recente? -y ou -n: ')
+		if(trackerList == '-y'):
+			call(['git', 'clone', 'https://github.com/ngosang/trackerslist.git'])
+		else:
+			print('Encerrando!')
 		exit
 
 # Input:
