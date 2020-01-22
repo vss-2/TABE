@@ -1,6 +1,14 @@
 import os
 from subprocess import call
 
+def OpenSubtitles(busca):
+	busca = busca[0:len(busca) - 2]
+	busca = busca.replace(' ', '+')
+	busca = busca.lower()
+	busca = 'https://www.opensubtitles.org/pt/search2/sublanguageid-por,pob/moviename-'+busca
+	call(['firefox', busca])
+	return
+
 def apenasLink(busca):
 	busca = busca[0:len(busca) - 2]
 	busca = busca.replace(' ', '+')
@@ -12,7 +20,7 @@ def apenasLink(busca):
 def abrirFirefox(busca):
 	link = apenasLink(busca)
 	call(["firefox", link])
-	return 
+	return
 
 def estouComSorte(busca):
 	call(["touch", "pagina.txt"])
@@ -48,22 +56,25 @@ def estouComSorte(busca):
 					# call[("xdg-mime", "default", "transmission-gtk.desktop", "x-scheme-handler/magnet")]
 					break
 			break
-		
+
 	return
 
 if __name__ == "__main__":
-	print('Digite sua busca e depois: \n-a para abrir (FFox) ou \n-p para printar o link ou \n-s para pegar o magnet do primeiro (estou com sorte): ')
+	print('Digite sua busca e depois: \n-a para abrir (FFox) ou \n-p para printar o link\n-l para abrir busca de legenda (OpenSubtitles) ou\n-s para pegar o magnet do primeiro (estou com sorte): ')
 	busca = input()
 	parametro = ''
 
 	if(busca.endswith('p')):
-		apenasLink(busca)
+		print(apenasLink(busca))
 		exit
 	elif(busca.endswith('a')):
 		abrirFirefox(busca)
 		exit
 	elif(busca.endswith('s')):
 		estouComSorte(busca)
+		exit
+	elif(busca.endswith('l')):
+		OpenSubtitles(busca)
 		exit
 	else:
 		print('O programa não recebeu parâmetros, encerrando!')
@@ -80,5 +91,5 @@ if __name__ == "__main__":
 # Chamada para o seu aplicativo de torrent com o melhor resultado (se encontrado)
 # Funcionamento, vai para página do torrent, que nem o -p faz
 # Vê o primeiro torrent da lista, vê o link dele, abre sua página
-# Na sua página busca pelo campo "magnet" 
+# Na sua página busca pelo campo "magnet"
 # Dá uma systemcall pro xdg-open chamar o programa associado ao torrent passando o magnet
