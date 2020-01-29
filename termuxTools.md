@@ -11,3 +11,15 @@
 
 #### Busca arquivos + filtra por resultado
 ``` ls | grep busca ```
+
+#### Atalhos do youtube-dl
+Vai extrair o áudio do link, converter para m4a, e depois salvar na pasta específica <br>
+``` youtube-dl LINK -x --audio-format "m4a" -o "~/storage/shared/Music/"```
+
+#### Firefox Nightly Settings Pessoais
+* Baixar qualquer versão 08/18
+* ``` about:config ```
+* ``` layout.css.devPixelsPerPx ``` de -1 para 2 (ou menos)
+* Baixar addon: ``` User Agent Switcher ``` settar para Firefox Windows (v63.0 pra cima), aplicar
+* Baixar addon: ``` uBlock Origin ``` settar nos ``` My Filters ``` : <br>
+``` ||www.link.com/*$document,domain=www.link.com ``` e salvar
