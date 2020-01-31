@@ -1,6 +1,18 @@
 import os
 from subprocess import call
 
+def trackerList():
+	trackerList = input('Espera, gostaria de pegar a trackerlist mais recente? -y ou -n: ')
+	if(trackerList == '-y'):
+		jaTemTL = os.listdir()
+		if('trackerslist' in jaTemTL):
+			print('Já existe um diretório trackerslist, vou remover e pegar o mais recente!')
+			call(['rm', '-rf', 'trackerslist'])
+		call(['git', 'clone', 'https://github.com/ngosang/trackerslist.git'])
+	else:
+		print('OK!')
+	return
+
 def OpenSubtitles(busca):
 	busca = busca[0:len(busca) - 2]
 	busca = busca.replace(' ', '+')
@@ -65,24 +77,24 @@ if __name__ == "__main__":
 	parametro = ''
 
 	if(busca.endswith('p')):
+		trackerList()
 		print(apenasLink(busca))
 		exit
 	elif(busca.endswith('a')):
+		trackerList()
 		abrirFirefox(busca)
 		exit
 	elif(busca.endswith('s')):
+		trackerList()
 		estouComSorte(busca)
 		exit
 	elif(busca.endswith('l')):
+		trackerList()
 		OpenSubtitles(busca)
 		exit
 	else:
 		print('O programa não recebeu parâmetros, encerrando!')
-		trackerList = input('Espera, gostaria de pegar a trackerlist mais recente? -y ou -n: ')
-		if(trackerList == '-y'):
-			call(['git', 'clone', 'https://github.com/ngosang/trackerslist.git'])
-		else:
-			print('Encerrando!')
+		trackerList()
 		exit
 
 # Input:
