@@ -14,7 +14,7 @@
 
 #### Atalhos do youtube-dl
 Vai extrair o áudio do link, converter para m4a, e depois salvar na pasta específica <br>
-``` youtube-dl LINK -x --audio-format "m4a" -o "~/storage/shared/Music/"```
+``` youtube-dl LINK -x --audio-format "m4a" -o "~/storage/shared/Music/%(title)s.%(ext)s"```
 
 #### Firefox Nightly Settings Pessoais
 * Baixar qualquer versão 08/18
