@@ -24,7 +24,7 @@ elif(opcao == 'ambos'):
     call(['ffmpeg', '-i', arq, '-ss', ini, '-t', fim, '-acodec', 'copy', arq[:len(arq)-4]+'_novo'+arq[len(arq)-4:]])
 elif(opcao == 'fim'):
     fim = input('Insira o fim, em segs: ')
-    call(['ffmpeg', '-i', arq, '-ss', 0, '-acodec', 'copy', arq[:len(arq)-4]+_novo+arq[len(arq)-4:]])
+    call(['ffmpeg', '-i', arq, '-ss', '0', '-acodec', 'copy', arq[:len(arq)-4]+_novo+arq[len(arq)-4:]])
 else:
     print('Voce escreveu errado ou tentou trollar o script, encerrando!')
     exit
