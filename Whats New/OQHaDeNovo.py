@@ -6,6 +6,7 @@ from subprocess import call
 
 #####################################################################################################
 call(['curl', 'http://spotifycharts.com/regional', '>>', 'site.html'])
+call(['bash', 'filtro.sh'])
 
 paises = [
 "global", "us - United States", "gb - United Kingdom", "ad - Andorra",
