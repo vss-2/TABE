@@ -17,7 +17,10 @@ Faz o mesmo que o programa acima, porém com interface gráfica (Tkinter). (Cód
 
 [```Whats New```](https://github.com/vss-2/TABE/tree/master/Whats%20New) : Dadas duas semanas do top50 do Spotify, o sistema mostra as músicas que estão presentes na segunda lista e não estão na primeira. (Código incompleto ⚠️)
 
-[```Markdowns```])(https://github.com/vss-2/TABE/tree/master/Markdowns) : Anotações sobre pacotes, aplicações e linguaguens que uso diariamente.
+[```Markdowns```](https://github.com/vss-2/TABE/tree/master/Markdowns) : Anotações sobre pacotes, aplicações e linguaguens que uso diariamente.
 
 [```SliceMusic.py```](https://github.com/vss-2/TABE/blob/master/SliceMusic.py) : 
-Usa o ```ffmpeg``` para cortar arquivos de uma música.(Código concluído ✔️) (Código concluído ✔️)
+Usa o ```ffmpeg``` para cortar arquivos de uma música. (Código concluído ✔️) 
+
+[```qrShare.py```](https://github.com/vss-2/TABE/blob/master/qrShare.py) : 
+Usa o ```(apt install) woof``` e ```(pip3 install) pyqrcode``` para printar um QRCode no terminal que ao ser escaneado permite baixar o arquivo selecionado no aparelho que escaneou o QR, usando da rede local (HTTP) como ponte. (Código concluído ✔️) 
