@@ -14,22 +14,23 @@
 ```$ type('Oi 9')``` <br>
 ```$ <class 'str'>```
 ### Qualquer texto que estiver entre áspas, "" ou '', é membro da classe str, abreviação de string (ou em português, cadeia de caracteres)
+<br>
 
 ## Atribuindo valores
 ### Python é fracamente tipada, ou seja, você não precisa indicar a qual classe você querendo atribuir a sua variável
 ```$ sua_variavel = 1 ``` <br>
-```$ print(sua_variavel) ``` <br><br>
+```$ print(sua_variavel) ``` <br>
 ```$ 1 ```
 ### Em outras linguagens, teríamos que indicar a qual classe desejaríamos trocar ```sua_variavel``` (no caso, saindo de int para str) 
-```$ sua_variavel = 'Um' ```
-```$ print(sua_variavel) ``` <br><br>
+```$ sua_variavel = 'Um' ``` <br>
+```$ print(sua_variavel) ``` <br>
 ```$ Um ```
 
 ## Função ```print()```
-### Serve para exibir quaisquer informações ou variáveis que forem colocadas entre os parênteses, a função ```type()``` verifica a qual classe o parâmetro pertence e print a resposta```
+### Serve para exibir quaisquer informações ou variáveis que forem colocadas entre os parênteses, a função ```type()``` verifica a qual classe o parâmetro pertence e print a resposta
 
 ## Cast e composição de funções
-### Podemos trocar a classe de variáveis, caso a mesma respeite a nova classe. Podemos fazer casts várias vezes, sendo este um exemplo de composição de funções
+### Podemos trocar a classe de variáveis, caso a mesma respeite a nova classe. <br> Podemos fazer casts várias vezes, sendo este um exemplo de composição de funções
 #### Cast de str para int
 ```$ type(int('1'))```<br>
 ```$ <class 'int'>```<br><br>

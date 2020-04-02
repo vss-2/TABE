@@ -11,3 +11,13 @@ Referência clara ao album: https://open.spotify.com/album/6wWBAQlfQ4AXClTAgsJSt
 [```Mintala/Spotify.sh```](https://github.com/vss-2/TABE/blob/master/Minstala/Spotify.sh) : Permite ao usuário baixar e usar localmente (sem instalação root) a versão do Spotify mais recente, criando também atalho na área de trabalho. (Código concluído ✔️)
 
 [```TPBusca.py```](https://github.com/vss-2/TABE/blob/master/TPBusca.py) : Ferramenta de busca automatizada por torrent, usando como fonte o TPB. Pode abrir a página com os resultados da busca (requer Mozilla Firefox) ou até automaticamente baixar o primeiro resultado da busca (requer Transmission) e iniciar o download através do mesmo. (Código concluído ✔️)
+
+[```TPBusca_GUI.py```](https://github.com/vss-2/TABE/blob/master/TPBusca.py) : 
+Faz o mesmo que o programa acima, porém com interface gráfica (Tkinter). (Código concluído ✔️)
+
+[```Whats New```](https://github.com/vss-2/TABE/tree/master/Whats%20New) : Dadas duas semanas do top50 do Spotify, o sistema mostra as músicas que estão presentes na segunda lista e não estão na primeira. (Código incompleto ⚠️)
+
+[```Markdowns```])(https://github.com/vss-2/TABE/tree/master/Markdowns) : Anotações sobre pacotes, aplicações e linguaguens que uso diariamente.
+
+[```SliceMusic.py```](https://github.com/vss-2/TABE/blob/master/SliceMusic.py) : 
+Usa o ```ffmpeg``` para cortar arquivos de uma música.(Código concluído ✔️) (Código concluído ✔️)
