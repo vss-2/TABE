@@ -1,7 +1,9 @@
 import os
-import pyqrcode 
+import pyqrcode
 import subprocess
 from subprocess import call, Popen, PIPE
+from tkinter import *
+from tkinter import filedialog
 
 URL_padrao   = ''
 porta_padrao = '8080'
@@ -25,13 +27,13 @@ def descobrirIPlocal():
         return URL_padrao
 
 if __name__ == "__main__":
-        print('Escolha um arquivo do diretório atual para compartilhar:  ')
-        lista = os.listdir()
+        print('Escolha um arquivo do diretório atual para compartilhar')
+        base = Tk()
+        arquivo = filedialog.askopenfilename(filetypes = [('All files', '*.*' )] )
+        base.destroy()
         
-        for arq in lista:
-                print(arq)
+        print('Local e arquivo selecionado: '+str(arquivo))
         
-        arquivo = str(input())
         bool_zip = str(input('Vai querer em formato .zip? (s/n) '))
         bool_url = str(input('Vai querer hostear na URL padrão? (s/n) '))
         
