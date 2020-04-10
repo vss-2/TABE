@@ -23,4 +23,4 @@ Faz o mesmo que o programa acima, porém com interface gráfica (Tkinter). (Cód
 Usa o ```ffmpeg``` para cortar arquivos de uma música. (Código concluído ✔️) 
 
 [```qrShare.py```](https://github.com/vss-2/TABE/blob/master/qrShare.py) : 
-Usa o ```(apt install) woof``` e ```(pip3 install) pyqrcode``` para printar um QRCode no terminal que ao ser escaneado permite baixar o arquivo selecionado no aparelho que escaneou o QR, usando da rede local (HTTP) como ponte. (Código concluído ✔️) 
+Usa o ```(apt install) woof```, ```(pip3 install) pyqrcode``` e ```Tkinter```  para printar um QRCode no terminal que ao ser escaneado permite baixar o arquivo selecionado no aparelho que escaneou o QR, usando da rede local (HTTP) como ponte. (Código concluído ✔️) 

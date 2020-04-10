@@ -104,3 +104,30 @@
 ```$ guardioes_da_galaxia = {'humano': 'Peter Quill', 'poder': 'Gosto musical', 'idade': 40} ``` <br>
 ```$ print(guardioes_da_galaxia['humano'])```<br>
 ```$ Peter Quill```<br>
+
+## Funções Anônimas (Lambda)
+
+### Usamos a palavra reservada ```lambda``` para indicar que estamos definindo uma função lambda. Seu classe é ```function```
+
+```python
+$ a = lambda y: y*23
+$ a(34)
+$ 782
+$ b = a(10)
+$ c = lambda z: b*z
+$ c(30)
+$ 6900
+$ soma_quadrados = lambda w,k: w**2+k**2
+$ 
+```
+
+### Composição de funções
+```python
+$ def funcao_quadratica(a, b, c):
+$       return lambda x: a*x**2 + b*x + c
+$
+$ f = funcao_quadratica(3,5,8)
+$ f(2)
+$ # ou #
+$ funcao_quadratica(3,5,8)(2)
+```
