@@ -118,7 +118,8 @@ $ c = lambda z: b*z
 $ c(30)
 $ 6900
 $ soma_quadrados = lambda w,k: w**2+k**2
-$ 
+$ soma_quadrados(2,3)
+$ 13
 ```
 
 ### Composição de funções
@@ -128,6 +129,81 @@ $       return lambda x: a*x**2 + b*x + c
 $
 $ f = funcao_quadratica(3,5,8)
 $ f(2)
+$ 30
 $ # ou #
 $ funcao_quadratica(3,5,8)(2)
+$ 30
 ```
+
+### Ordenando pelo sobrenome usando ```sort()``` e função lambda
+```python
+$ a = []
+$ a.append('A. Zezo')
+$ a.append('Z. Alberto')
+$ a.append('L. Madruga')
+$ a.append('B. Barcos')
+$ a.append('F. Jackson')
+$ a.append('G. Helio')
+# Ordenando: quebro nomes, pego o último nome, e diminuo e ordena
+$ a.sort(key = lambda n: n.split(' ')[-1].lower())
+```
+
+### Usando sort para ordenar a partir de um subconjunto de dados
+```python
+$ capacidade_estadios_dec = [
+$ ('Arruda', 60044, 'PE'),
+$ ('Mineirão', 61846, 'MG'),
+$ ('Castelão', 63903, 'CE'),
+$ ('Mané Garrincha', 72788, 'DF'),
+$ ('Morumbi', 77011, 'SP'),
+$ ('Maracanã', 78838, 'RJ')
+$ ]
+$ # Já que o sort realiza in-place, posso usar o sorted()
+$ # para copiar a preservar a estrutura original e dar sort
+$ capacidade_estadios_cre = sorted(capacidade_estadios_dec[1])
+$
+$ # Posso também usar uma função lambda, caso não me importe com o original
+$ tam_crescente = lambda e: e[1]
+$ capacidade_estadios_dec.sort(key=tam_crescente)
+
+```
+
+## Exponenciação Rápida (Fast exponentiation)
+### Serve para reduzir o tempo de calcular a exponenciação de O(n) para O(log n)
+
+```python
+$ def expo_rapida(a,n):
+$       if(n==0):
+$           return 1
+$       x = expo_rapida(a,n/2)
+$       x = x*x
+$       if(n%2 == 1):
+$           x = x*a
+$       return x
+```
+
+## Exceções
+### O uso de exceções é fundamentado na ideia de criar um programa que seja a prova de falhas ou, no mínimo, prevenir erros e falhas previsíveis do seu código. Usamos o quarteto ```try, except, else, finally```;
+
+```python
+$ try:
+$       # Tentando abrir um arquivo 
+$       with open('arquivo.txt') as arqtxt:
+$           leitor = arqtxt.read().decode('utf-8')
+$ except FileNotFoundException as FNFE:
+$       # Exceção caso o arquivo não exista
+$       print('O arquivo não existe, verifique e tente novamente!\n')
+$       raise
+$ except EOFError as EOF:
+$       # O arquivo chegou ao fim
+$       print('O arquivo está vazio, verifique e tente novamente!\n')
+$       raise
+$ else:
+$       # Caso o try não gere nenhuma exceção, e tudo dê OK
+$       print('O conteúdo do arquivo é:\n', leitor)
+$ finally: 
+$       # Este código será executado mesmo que haja exceções ou não
+$       print('Encerrando aplicação!')
+$       exit()
+```
+
