@@ -10,6 +10,9 @@
 ### Para saber informações do arquivo
 ``` ffprobe input_file.xyz ```
 
+### Convertendo vídeo para gif
+``` ffmpeg -i input.mp4 -vf "fps=10,scale=480:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 output_gif.gif ```
+
 ### Significado das flags:
 * ```-y: Sobrescreve o output, sem perguntar```
 * ```-i: Arquivo input```
@@ -17,3 +20,11 @@
 * ```-pix_fmt: Formato de pixel```
 * ```-b: a/v bitrate de audio/video```
 * ```-ar: Frequência do audio```
+* ```-an: Remove áudio```
+* ```-loop: Repetir o vídeo, quando terminar exibição```
+* ### Especificação avançada:
+* ```fps=10,scale=480:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse```
+*  O vídeo vai ter 10fps;
+*  A escala usada preservará a proporção usando 480 como base (a largura);
+*  Será usado o algoritmo de Lanczos (matrizes de eigenvectors) para conversão;
+*  Split permite trabalhar com múltiplas inputs e outputs. Acontece: ```split[output1][output2]```; no ```[s0]palettegen[p]```, s0 é input e p é output, assim por diante.
