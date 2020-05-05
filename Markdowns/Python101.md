@@ -125,15 +125,15 @@ minha_tupla.count('tripla')
 ## Listas
 ### Em resumo, são tuplas que podem ser modificadas, todos os métodos vistos acima continuam válidos e ganhamos algumas novas funções:
 
-#### append(): Adiciona um elemento ao fim da lista <br>
-#### clear(): Remove todos os elementos da lista, deixando-a vazia<br>
-#### copy(): Copia todos os elementos de uma lista, é útil para transferí-la para outra variável<br>
-#### extend(): Adiciona qualquer estrutura (lista, tupla, elemento) dada como parâmetro ao fim da lista<br>
-#### insert(): Recebe dois parâmetros: posição, elemento; ou seja, você pode inserir numa dada posição específica da lista<br>
-#### pop(): Recebe dois parâmetros: posição, elemento; ou seja, você pode remover numa dada posição específica da lista<br>
-#### remove(): Remove o elemento dado, caso ele exista na lista
-#### reverse(): Inverte a ordenação da lista
-#### sort(): Orderna a lista (0-9) e (a-Z)
+#### ```append()``` ⇒ Adiciona um elemento ao fim da lista <br>
+#### ```clear()``` ⇒ Remove todos os elementos da lista, deixando-a vazia<br>
+#### ```copy()``` ⇒ Copia todos os elementos de uma lista, é útil para transferí-la para outra variável<br>
+#### ```extend()``` ⇒ Adiciona qualquer estrutura (lista, tupla, elemento) dada como parâmetro ao fim da lista<br>
+#### ```insert()``` ⇒ Recebe dois parâmetros: posição, elemento; ou seja, você pode inserir numa dada posição específica da lista<br>
+#### ```pop()``` ⇒ Recebe dois parâmetros: posição, elemento; ou seja, você pode remover numa dada posição específica da lista<br>
+#### ```remove()``` ⇒ Remove o elemento dado, caso ele exista na lista
+#### ```reverse()``` ⇒ Inverte a ordenação da lista
+#### ```sort()``` ⇒ Orderna a lista (0-9) e (a-Z)
 
 ## Dicionários
 ### Armazenam informação no formato: ```variavel = {'chave': valor}```
@@ -188,12 +188,12 @@ a.sort(key = lambda n: n.split(' ')[-1].lower())
 ### Usando sort para ordenar a partir de um subconjunto de dados
 ```python
 capacidade_estadios_dec = [
-('Arruda', 60044, 'PE'),
-('Mineirão', 61846, 'MG'),
-('Castelão', 63903, 'CE'),
-('Mané Garrincha', 72788, 'DF'),
-('Morumbi', 77011, 'SP'),
-('Maracanã', 78838, 'RJ')
+      ('Arruda', 60044, 'PE'),
+      ('Mineirão', 61846, 'MG'),
+      ('Castelão', 63903, 'CE'),
+      ('Mané Garrincha', 72788, 'DF'),
+      ('Morumbi', 77011, 'SP'),
+      ('Maracanã', 78838, 'RJ')
 ]
 # Já que o sort realiza in-place, posso usar o sorted()
 # para copiar a preservar a estrutura original e dar sort
@@ -243,3 +243,87 @@ finally:
       exit()
 ```
 
+## Recebendo múltiplos ```input()``` com compressão de lista
+```multiplos_inputs = [int(i) for i in input().split(' ')]```
+
+## Chamando uma função com unpacking 
+```python
+if '__name__' == '__main__':
+      calcular(*multiplos_inputs)
+
+def calcular(input1, input2, input3):
+      pass
+```
+
+## Usando Kwargs para múltiplos inputs
+```python
+def soma(a, *kwargs)
+      return a + sum( kwargs )
+```
+
+# POO
+
+## POO - Decorators
+##### [Fonte: YouTube](https://www.youtube.com/watch?v=jCzT9XFZ5bw)
+### Quando estiver lidando com classes, provavelmente você deverá se lembrar dos tradicionais métodos construtores, destrutores, get e sets de outras linguagens como, Java e C++. <br> Através do uso de Decorators, podemos configurar os mesmos métodos em Python de forma mais simples. Observe primeiro um exemplo sem usar Decorators.
+
+```python
+class Empregado:
+
+      def __init__(self, nome, snome):
+            self.nome  = nome
+            self.snome = snome
+            self.email = nome + '.' +snome + '@site.com.br'
+
+      def nomeCompleto(self):
+            print(self.nome + ' ' + self.snome) 
+```
+
+```shell
+> empregado1 = Empregado('Joao', 'Silva')
+> empregado.snome('Silva e Borba')
+> print(empregado1.email)
+$ Joao.Silva@site.com.br
+> print(empregado1.nomeCompleto())
+$ Joao Silva e Borba
+```
+
+### Perceba que nessa situação temos: uma vez que um funcionário seja criado, caso seja criado o email (com nome de solteiro), ele nunca mais poderá ser editado (caso se case ou mude o nome), e logo teríamos que gerar um novo funcionário para poder atualizá-lo. <br> Para sanar a situação, e evitar danificar o código criando novas funções set_email, set_nome e set_sobrenome,(poupamos tempo também adicionando e removendo defs, tirando e colocandos selfs e parâmetros, etc), podemos criar propriedades para cada um.
+
+```python
+class Empregado:
+
+      def __init__(self, nome, snome):
+            self.nome  = nome
+            self.snome = snome
+
+      @property
+      def email(self):
+            return nome + '.' + snome + '@site.com.br'
+
+      @property
+      def nomeCompleto(self):
+            return nome + ' ' + snome
+
+      @nomeCompleto.setter
+      def nomeCompleto(self, nome):
+            nome, snome = nome.split(' ')
+            self.nome  = nome
+            self.snome = snome
+
+      @nomeCompleto.deleter
+      def nomeCompleto(self):
+            self.nome  = None
+            self.snome = None
+```
+
+### Agora podemos continuar usando as funções do mesmo jeito
+```shell
+> empregado1 = Empregado('Joao', 'Silva')
+> empregado.snome('Silva e Borba')
+> print(empregado1.email)
+$ Joao.Silva e Borba@site.com.br
+> print(empregado1.nomeCompleto)
+$ Joao Silva e Borba
+```
+#### Obs: vamos fingir que emails funcionam com espaço entre seus caracteres 🤣️👀️ 
