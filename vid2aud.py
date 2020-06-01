@@ -1,5 +1,15 @@
 from subprocess import call
 
+class colors:
+        HEADER = '\033[95m'
+        OKBLUE = '\033[94m'
+        OKGREEN = '\033[92m'
+        WARNING = '\033[93m'
+        FAIL = '\033[91m'
+        ENDC = '\033[0m'
+        BOLD = '\033[1m'
+        UNDERLINE = '\033[4m'
+
 def cortador_ID(idk):
         if(idk.startswith('youtube.com/watch?v=')):
                 idk = idk[20:31]
@@ -18,10 +28,10 @@ def identificador(url):
         elif(url.startswith('www.')):
                 url = url[4:]
                 return cortador_ID(url)
-        elif(url.startswith('youtube.com/watch?v='):
+        elif(url.startswith('youtube.com/watch?v=')):
                 # Provavelmente já tá no formato youtube.com/ID
                 return url[20:31]
-	else:
+        else:
                 print('ID não identificado, encerrando!')
                 return exit()
 
@@ -34,7 +44,7 @@ if __name__ == "__main__":
                 print('Link vazio')
                 exit()
         else:
-                print('Iniciando download de: ')
+                print(colors.WARNING + 'Iniciando download de: ' + colors.ENDC)
                 call(['youtube-dl', '-e', link_arg])
                 call(['youtube-dl', '-x', '--audio-format', str("m4a"), '-o', str("%(title)s.%(ext)s"), link_arg])
         exit()
