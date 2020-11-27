@@ -15,8 +15,6 @@ Referência clara ao album: https://open.spotify.com/album/6wWBAQlfQ4AXClTAgsJSt
 [```TPBusca_GUI.py```](https://github.com/vss-2/TABE/blob/master/TPBusca.py) : 
 Faz o mesmo que o programa acima, porém com interface gráfica (Tkinter). (Código concluído ✔️)
 
-[```Whats New```](https://github.com/vss-2/TABE/tree/master/Whats%20New) : Dadas duas semanas do top50 do Spotify, o sistema mostra as músicas que estão presentes na segunda lista e não estão na primeira. (Código incompleto ⚠️)
-
 [```Markdowns```](https://github.com/vss-2/TABE/tree/master/Markdowns) : Anotações sobre pacotes, aplicações e linguaguens que uso diariamente.
 
 [```SliceMusic.py```](https://github.com/vss-2/TABE/blob/master/SliceMusic.py) : 

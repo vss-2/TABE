@@ -46,9 +46,10 @@ if __name__ == "__main__":
         url = pyqrcode.create(str(URL_padrao)+':'+str(porta_padrao))
         print(url.terminal(quiet_zone=1))
         
+        # -c 5 indicar que o woof ficará ativo por 5 envios
         if (bool_zip.lower().strip().startswith('s')):
-                call(['woof', '-i', URL_padrao, '-p', porta_padrao, '-Z', arquivo]) 
+                call(['woof', '-c', 5, '-i', URL_padrao, '-p', porta_padrao, '-Z', arquivo]) 
         else:
-                call(['woof', '-i', URL_padrao, '-p', porta_padrao, arquivo])
+                call(['woof', '-c', 5, '-i', URL_padrao, '-p', porta_padrao, arquivo])
         
         exit
