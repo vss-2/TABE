@@ -10,6 +10,9 @@
 ### Para saber informações do arquivo
 ``` ffprobe input_file.xyz ```
 
+### Cortando vídeo do começo até 1hr 1min e 25s
+``` ffmpeg -ss 00:00:00 -i input.mp4 -to 01:01:25 -c copy output.mp4```
+
 ### Convertendo vídeo para gif
 ``` ffmpeg -i input.mp4 -vf "fps=10,scale=480:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" -loop 0 output_gif.gif ```
 
