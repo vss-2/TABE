@@ -51,3 +51,4 @@ echo "xed tema: https://draculatheme.com/gedit/"
 
 # Opera
 # Meliuz, Tradutor, Video Downloader, Guias (por frequencia), Rastreadores e Anúncios, FFMPEG-fix, Download localização específica
+alias telegram='cd ~/Telegram && ./Telegram'
