@@ -5,6 +5,10 @@ sudo add-apt-repository ppa:maarten-baert/simplescreenrecorder
 # Streaming de música Spotify
 curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add - 
 echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
+# KDEnLive
+sudo add-apt-repository ppa:kdenlive/kdenlive-stable
+# SimpleScreenRecorder
+sudo apt-add-repository ppa:maarten-baert/simplescreenrecorder
 
 # Atualização da lista de repositórios
 sudo apt-get update
@@ -16,6 +20,7 @@ sudo apt install npm
 sudo apt install python3-pip
 sudo apt install vlc-bin
 sudo apt install gparted
+sudo apt install kdenlive
 sudo apt-get install spotify-client
 sudo apt-get install papirus-icon-theme
 sudo apt-get install simplescreenrecorder
