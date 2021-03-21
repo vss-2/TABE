@@ -57,3 +57,12 @@ echo "xed tema: https://draculatheme.com/gedit/"
 # Opera
 # Meliuz, Tradutor, Video Downloader, Guias (por frequencia), Rastreadores e Anúncios, FFMPEG-fix, Download localização específica
 alias telegram='cd ~/Telegram && ./Telegram'
+
+# Backup diversos
+alias backuplistaprogramasarq="mkdir ~/BackupListaProgramas && cp -r /usr/share/applications/ ~/BackupListaProgramas"
+alias backupextensoesvscode="mkdir ~/ExtensoesVSCode && cp -r ~/.vscode/extensions/ ~/ExtensoesVSCode/"
+alias backuplistaprogramasdpkg="dpkg --get-selections > ~/dpkg_get_selections.list"
+alias restaurarlistaprogramasdpkg="sudo dpkg --set-selections < ~/dpkg_get_selections.list && sudo apt-get dselect-upgrade -y"
+alias backuplistafontes="sudo cp -R /etc/apt/sources.list* ~/"
+alias backupaptcompleto="sudo apt-key exportall > ~/apt_exportall.keys"
+alias restauraraptcompleto="sudo apt-key add ~/apt_exportall.keys && sudo apt-get update && sudo apt-get install dselect"
