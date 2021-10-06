@@ -3,3 +3,5 @@ sudo mkdir -p /usr/lib/chromium-browser
 sudo cp libffmpeg.so /usr/lib/chromium-browser
 sudo chmod 555 /usr/lib/chromium-browser/libffmpeg.so
 sudo ldconfig
+
+echo 'alternativa: https://github.com/Ld-Hagen/fix-opera-linux-ffmpeg-widevine.git'
