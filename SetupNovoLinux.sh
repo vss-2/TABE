@@ -56,6 +56,11 @@ echo "xed tema: https://draculatheme.com/gedit/"
 
 # Opera
 # Meliuz, Tradutor, Video Downloader, Guias (por frequencia), Rastreadores e Anúncios, FFMPEG-fix, Download localização específica
+echo "VideoSpeed https://github.com/igrigorik/videospeed"
+echo "Tradutor https://addons.opera.com/pt-br/extensions/details/translator/"
+echo "SaveFromNet https://addons.opera.com/pt-br/extensions/details/savefromnet-helper/"
+echo "Return Youtube Dislike https://github.com/Anarios/return-youtube-dislike/"
+
 alias telegram='cd ~/Telegram && ./Telegram'
 
 # Backup diversos
