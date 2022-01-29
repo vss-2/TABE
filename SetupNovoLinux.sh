@@ -35,7 +35,8 @@ wget -O opera.deb https://download.opera.com/download/get/?partner=www&opsys=Lin
 wget -O vscode.deb https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
 
 # Atalhos
-alias py='python3'
+echo "alias py=\"python3\"" >> ~/.bashrc
+echo "alias py=\"python3\"" >> ~/.zshrc
 
 # Config manual
 # "https://www.leaseweb.com/labs/2013/07/5-crucial-optimizations-for-ssd-usage-in-ubuntu-linux/"
@@ -71,3 +72,7 @@ alias restaurarlistaprogramasdpkg="sudo dpkg --set-selections < ~/dpkg_get_selec
 alias backuplistafontes="sudo cp -R /etc/apt/sources.list* ~/"
 alias backupaptcompleto="sudo apt-key exportall > ~/apt_exportall.keys"
 alias restauraraptcompleto="sudo apt-key add ~/apt_exportall.keys && sudo apt-get update && sudo apt-get install dselect"
+
+sudo apt-get install zsh -y
+sudo apt install zsh-syntax-highlighting
+echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
