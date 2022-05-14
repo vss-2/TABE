@@ -76,3 +76,10 @@ alias restauraraptcompleto="sudo apt-key add ~/apt_exportall.keys && sudo apt-ge
 sudo apt-get install zsh -y
 sudo apt install zsh-syntax-highlighting
 echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ~/.zshrc
+
+sudo apt install resolvconf
+sudo systemctl enable resolvconf.service
+sudo systemctl start  resolvconf.service
+sudo echo "nameserver 8.8.8.8 \nnameserver 8.8.4.4\nnameserver 1.1.1.1" >> /etc/resolvconf/resolv.conf.d/head
+sudo resolvconf --enable-updates
+sudo resolvconf -u
